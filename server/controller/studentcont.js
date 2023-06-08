@@ -1,7 +1,7 @@
 import Student from "../models/student.js";
 import bcrypt from "bcryptjs";
 import Studentdetails from '../models/studentdetails,js';
-export const login = async(req,res)=>{
+export const Login = async(req,res)=>{
      const errors = {passwordError:String , backendError:String};
      try{
         const data = req.body;
@@ -28,7 +28,7 @@ export const login = async(req,res)=>{
 }
 
 
-export const formapply = async(req,res)=>{
+export const Formapply = async(req,res)=>{
     const errors = {nodata:String , backendError:String};
     try{ 
         const data = req.body;
