@@ -2,6 +2,7 @@ import Student from "../models/student.js";
 import bcrypt from "bcryptjs";
 import Studentdetails from '../models/studentdetails,js';
 export const Login = async(req,res)=>{
+    
      const errors = {passwordError:String , backendError:String};
      try{
         const data = req.body;
