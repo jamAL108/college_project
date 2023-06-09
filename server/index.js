@@ -1,27 +1,25 @@
-import express from "express";
+const express = require("express");
 const app = express();
-import mongoose from "mongoose";
-import cors from 'cors';
-import dotenv from "dotenv";
-dotenv.config({path:"./config.env"});
-import FacultyRouter from "./router/facultyrouter.js";
-import StudentRouter from "./router/studentrouter.js";
-import bodyParser from "body-parser";
+const mongoose = require("mongoose");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-const port = 8000;
-const db = process.env.DB;
-mongoose.connect(db).then(()=>{
+
+const port = 5000;
+const db = "mongodb+srv://jamalmohideen971:SIESCHAMPS@cluster0.kfufvok.mongodb.net/collegeproj?retryWrites=true&w=majority"; //Put the database connection string here
+
+app.use(require("./routes"));
+
+mongoose.connect(db).then(() => {
     console.log("success")
-}).catch((err)=>{
+}).catch((err) => {
     console.log(err)
 });
-app.use("/faculty" ,FacultyRouter);
-app.use("/student",StudentRouter);
-app.get('/',(req,res)=>{
-    res.send("hello");
-})
-app.listen(port,()=>{
-    console.log("started")
+
+app.listen(port, () => {
+    console.log("Listening on port : ", port);
 })
